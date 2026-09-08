@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 };
 
 const TELEGRAM_CHANNEL_URL =
-  process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "https://t.me/gigoplanet";
+  process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "https://t.me/+r8sGJySc0MQ5Y2Jk";
 
 export default function PaymentPage() {
   return (

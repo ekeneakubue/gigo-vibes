@@ -19,8 +19,6 @@ export function BuyButtons({
     >
       <a
         href={PAYSTACK_CHECKOUT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
         className={`w-full rounded-[10px] bg-red-600 px-8 py-3.5 text-center text-sm font-extrabold tracking-wider text-white uppercase shadow-lg shadow-red-600/35 transition-all hover:scale-[1.03] hover:bg-red-500 ${
           isRow ? "sm:w-auto sm:shrink-0" : ""
         }`}
@@ -29,8 +27,6 @@ export function BuyButtons({
       </a>
       <a
         href={PAYSTACK_CHECKOUT_URL}
-        target="_blank"
-        rel="noopener noreferrer"
         className={`w-full rounded-[10px] px-8 py-3.5 text-center text-sm font-semibold transition-colors ${
           isRow
             ? "bg-white text-black hover:bg-white/90 sm:w-auto sm:shrink-0"
