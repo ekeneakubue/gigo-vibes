@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PAYSTACK_CHECKOUT_URL } from "../lib/links";
 import { Logo } from "./logo";
 
 const links = [
@@ -33,7 +34,9 @@ export function SiteHeader() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <a
-            href="#buy"
+            href={PAYSTACK_CHECKOUT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-[10px] bg-red-600 px-6 py-3 text-xs font-extrabold tracking-wider whitespace-nowrap text-white uppercase shadow-lg shadow-red-600/35 transition-all hover:scale-[1.03] hover:bg-red-500"
           >
             Buy now — ₦10,000
@@ -81,7 +84,9 @@ export function SiteHeader() {
               </a>
             ))}
             <a
-              href="#buy"
+              href={PAYSTACK_CHECKOUT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="mt-3 rounded-[10px] bg-red-600 px-6 py-4 text-center text-sm font-extrabold tracking-wider text-white uppercase shadow-lg shadow-red-600/30"
             >
