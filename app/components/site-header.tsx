@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Logo } from "./logo";
-import { ThemeToggle } from "./theme-toggle";
 
 const links = [
   { href: "#curriculum", label: "Curriculum" },
@@ -33,7 +32,6 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <ThemeToggle />
           <a
             href="#buy"
             className="rounded-[10px] bg-red-600 px-6 py-3 text-xs font-extrabold tracking-wider whitespace-nowrap text-white uppercase shadow-lg shadow-red-600/35 transition-all hover:scale-[1.03] hover:bg-red-500"
@@ -42,34 +40,31 @@ export function SiteHeader() {
           </a>
         </div>
 
-        <div className="flex items-center gap-2 lg:hidden">
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen((value) => !value)}
-            aria-expanded={open}
-            aria-label="Toggle navigation menu"
-            className="grid size-10 place-items-center rounded-[10px] border border-foreground/12 text-foreground"
-          >
-            <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
-              {open ? (
-                <path
-                  d="M6 6l12 12M18 6L6 18"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                />
-              ) : (
-                <path
-                  d="M4 7h16M4 12h16M4 17h16"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
+        <button
+          type="button"
+          onClick={() => setOpen((value) => !value)}
+          aria-expanded={open}
+          aria-label="Toggle navigation menu"
+          className="grid size-10 place-items-center rounded-[10px] border border-foreground/12 text-foreground lg:hidden"
+        >
+          <svg viewBox="0 0 24 24" className="size-5" aria-hidden="true">
+            {open ? (
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            ) : (
+              <path
+                d="M4 7h16M4 12h16M4 17h16"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
+            )}
+          </svg>
+        </button>
       </div>
 
       {open ? (

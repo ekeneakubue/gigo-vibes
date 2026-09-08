@@ -53,8 +53,7 @@
   }
 }
 
-:root,
-html.dark {
+:root {
   color-scheme: dark;
   --page-bg: #05060c;
   --page-fg: #e9eaf5;
@@ -70,24 +69,6 @@ html.dark {
   --glass-to: rgb(255 255 255 / 0.02);
   --glass-border: rgb(255 255 255 / 0.09);
   --grid-line: rgb(255 255 255 / 0.045);
-}
-
-html.light {
-  color-scheme: light;
-  --page-bg: #f4f5f9;
-  --page-fg: #0c0e16;
-  --page-muted: #5c647a;
-  --ink-950: #f4f5f9;
-  --ink-900: #ffffff;
-  --ink-850: #eef0f6;
-  --ink-800: #e5e8f0;
-  --ink-700: #d5dae6;
-  --cyan-brand: #0891b2;
-  --lime-brand: #4d7c0f;
-  --glass-from: rgb(255 255 255 / 0.92);
-  --glass-to: rgb(255 255 255 / 0.72);
-  --glass-border: rgb(12 14 22 / 0.1);
-  --grid-line: rgb(12 14 22 / 0.06);
 }
 
 html {
