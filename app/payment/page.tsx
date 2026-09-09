@@ -1,24 +1,55 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Logo } from "../components/logo";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { PAYSTACK_CHECKOUT_URL } from "../lib/links";
+import { PAYMENT_ACCESS_COOKIE } from "../lib/paystack";
 
 export const metadata: Metadata = {
   title: "Payment successful",
   description:
     "Welcome to GigoPlanet Coding Vibes. Join the Telegram training channel to start your course.",
+  robots: { index: false, follow: false },
 };
 
 const TELEGRAM_CHANNEL_URL =
   process.env.NEXT_PUBLIC_TELEGRAM_URL ?? "https://t.me/+r8sGJySc0MQ5Y2Jk";
 
-export default function PaymentPage() {
+type PaymentPageProps = {
+  searchParams: Promise<{ reference?: string | string[] }>;
+};
+
+function readReference(
+  value: string | string[] | undefined,
+): string | undefined {
+  if (typeof value === "string" && value.trim()) return value.trim();
+  if (Array.isArray(value) && value[0]?.trim()) return value[0].trim();
+  return undefined;
+}
+
+export default async function PaymentPage({ searchParams }: PaymentPageProps) {
+  const params = await searchParams;
+  const reference = readReference(params.reference);
+
+  // Legacy Paystack redirects that still land on /payment?reference=...
+  if (reference) {
+    redirect(
+      `/api/paystack/callback?reference=${encodeURIComponent(reference)}`,
+    );
+  }
+
+  const cookieStore = await cookies();
+  const accessCookie = cookieStore.get(PAYMENT_ACCESS_COOKIE)?.value;
+
+  if (!accessCookie) {
+    redirect(PAYSTACK_CHECKOUT_URL);
+  }
+
   return (
     <main className="relative flex min-h-full flex-1 flex-col overflow-hidden">
       <div className="grid-backdrop pointer-events-none absolute inset-0" />
       <div className="pointer-events-none absolute -top-32 left-1/4 size-[28rem] rounded-full bg-violet-brand/30 blur-[120px]" />
       <div className="pointer-events-none absolute right-0 -bottom-40 size-[26rem] rounded-full bg-fuchsia-brand/20 blur-[120px]" />
       <div className="pointer-events-none absolute top-1/3 right-1/4 size-[18rem] rounded-full bg-lime-brand/10 blur-[100px]" />
-
 
       <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-5 py-16 text-center sm:px-8 sm:py-15">
         <div className="animate-float relative mb-8 grid size-20 place-items-center rounded-[20px] bg-lime-brand/15 ring-1 ring-lime-brand/35">
@@ -49,8 +80,9 @@ export default function PaymentPage() {
         </h1>
 
         <p className="mt-5 max-w-xl text-base leading-7 text-muted text-pretty sm:text-lg">
-          You&apos;re in. Your seat on the course is confirmed — join the Telegram
-          training channel to start your journey and get mentor updates.
+          You&apos;re in. Your seat on the course is confirmed — join the
+          Telegram training channel to start your journey and get mentor
+          updates.
         </p>
 
         <div className="mt-8 flex w-full max-w-md flex-col gap-3">
@@ -69,8 +101,8 @@ export default function PaymentPage() {
               <path d="M21.8 4.3c.3-.9-.5-1.6-1.3-1.3L2.7 9.6c-.9.3-.9 1.6.1 1.8l4.7 1.4 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.6 4.7 3.5c.7.5 1.7.1 1.9-.7l3.7-14.7zM9.6 14.1l-.5 2.8-.9-3.5 10.2-6.2-8.8 6.9z" />
             </svg>
             Join Telegram training channel
-          </a>          
-        </div>        
+          </a>
+        </div>
       </div>
     </main>
   );
