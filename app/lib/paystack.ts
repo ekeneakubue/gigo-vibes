@@ -1,4 +1,7 @@
-import { COURSE_AMOUNT_KOBO } from "./links";
+import {
+  COURSE_AMOUNT_KOBO,
+  getPaymentSuccessUrl,
+} from "./links";
 
 export type PaystackVerifyResult = {
   ok: boolean;
@@ -7,10 +10,76 @@ export type PaystackVerifyResult = {
   status?: string;
 };
 
+export function getPaystackSecret() {
+  return process.env.PAYSTACK_SECRET_KEY?.trim() || "";
+}
+
+export async function initializePaystackPayment(options: {
+  email: string;
+  firstName?: string;
+  lastName?: string;
+  origin: string;
+}) {
+  const secret = getPaystackSecret();
+  if (!secret) {
+    throw new Error("PAYSTACK_SECRET_KEY is not configured");
+  }
+
+  const callbackUrl = getPaymentSuccessUrl(options.origin);
+  const response = await fetch("https://api.paystack.co/transaction/initialize", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${secret}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: options.email,
+      amount: COURSE_AMOUNT_KOBO,
+      currency: "NGN",
+      callback_url: callbackUrl,
+      metadata: {
+        custom_fields: [
+          ...(options.firstName
+            ? [
+                {
+                  display_name: "First name",
+                  variable_name: "first_name",
+                  value: options.firstName,
+                },
+              ]
+            : []),
+          ...(options.lastName
+            ? [
+                {
+                  display_name: "Last name",
+                  variable_name: "last_name",
+                  value: options.lastName,
+                },
+              ]
+            : []),
+        ],
+      },
+    }),
+    cache: "no-store",
+  });
+
+  const payload = (await response.json()) as {
+    status: boolean;
+    message?: string;
+    data?: { authorization_url?: string; reference?: string; access_code?: string };
+  };
+
+  if (!response.ok || !payload.status || !payload.data?.authorization_url) {
+    throw new Error(payload.message || "Unable to start Paystack checkout");
+  }
+
+  return payload.data;
+}
+
 export async function verifyPaystackReference(
   reference: string,
 ): Promise<PaystackVerifyResult> {
-  const secret = process.env.PAYSTACK_SECRET_KEY?.trim();
+  const secret = getPaystackSecret();
   if (!secret || !reference) {
     return { ok: false };
   }

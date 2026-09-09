@@ -92,6 +92,32 @@
   --grid-line: rgb(255 255 255 / 0.045);
 }
 
+/* Light content area for /admin while the sidebar stays dark. */
+.admin-panel {
+  color-scheme: light;
+  --page-bg: #f4f5f9;
+  --page-fg: #0c0e16;
+  --page-muted: #5c647a;
+  --ink-950: #f4f5f9;
+  --ink-900: #ffffff;
+  --ink-850: #eef0f6;
+  --ink-800: #e5e8f0;
+  --ink-700: #d5dae6;
+  --cyan-brand: #0e7490;
+  --lime-brand: #4d7c0f;
+  background-color: var(--page-bg);
+  color: var(--page-fg);
+}
+
+.admin-sidebar {
+  color-scheme: dark;
+  --page-bg: #090b14;
+  --page-fg: #e9eaf5;
+  --page-muted: #9aa1bd;
+  background-color: #090b14;
+  color: #e9eaf5;
+}
+
 html {
   scroll-behavior: smooth;
 }

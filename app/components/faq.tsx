@@ -1,40 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { faqItems } from "../lib/content";
 import { SectionHeading } from "./section-heading";
-
-const faqs = [
-  {
-    question: "Do I need to know how to code already?",
-    answer:
-      "No. Module one assumes you have never opened a terminal. What you do need is patience for detail — AI removes the typing, not the thinking.",
-  },
-  {
-    question: "Which AI tools will I need to pay for?",
-    answer:
-      "You can complete the whole curriculum on free tiers. We teach Cursor and Antigravity as the primary editors and show free alternatives for every paid feature, so budget is never the blocker.",
-  },
-  {
-    question: "What if the tools change after I enrol?",
-    answer:
-      "That is the point of the monthly refresh. When an editor ships a breaking change, the affected lessons are re-recorded and you get an email with a short diff of what moved.",
-  },
-  {
-    question: "How much time does this take each week?",
-    answer:
-      "Around four hours: roughly two hours of lessons and two hours of building. The cohort is paced but the material is on demand, so you can go faster or slower.",
-  },
-  {
-    question: "Will I own the projects I build?",
-    answer:
-      "Completely. Every project, template and prompt is yours to use commercially, including work you deliver to paying clients.",
-  },
-  {
-    question: "Is there a refund if it is not for me?",
-    answer:
-      "Yes — 14 days, no questions, no forms. The free tier also gives you all of module one so you can judge before paying anything.",
-  },
-];
 
 export function Faq() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -44,7 +12,7 @@ export function Faq() {
       <SectionHeading eyebrow="FAQ" title="Questions we get every cohort" />
 
       <div className="mt-12 space-y-3">
-        {faqs.map((faq, index) => {
+        {faqItems.map((faq, index) => {
           const isOpen = openIndex === index;
 
           return (
