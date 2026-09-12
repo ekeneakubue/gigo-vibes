@@ -10,6 +10,88 @@ export type FaqItem = {
   answer: string;
 };
 
+export type TechStackItem = {
+  name: string;
+  mark: string;
+  layer: string;
+  purpose: string;
+};
+
+export const techStack: TechStackItem[] = [
+  {
+    name: "Cursor AI",
+    mark: "CR",
+    layer: "AI editor",
+    purpose: "AI-powered development and vibe coding",
+  },
+  {
+    name: "VS Code",
+    mark: "VS",
+    layer: "Code editor",
+    purpose: "Editor foundation, extensions and debugging",
+  },
+  {
+    name: "Antigravity AI",
+    mark: "AG",
+    layer: "Agentic IDE",
+    purpose: "Parallel agents and browser-verified builds",
+  },
+  {
+    name: "Next.js",
+    mark: "NX",
+    layer: "Framework",
+    purpose: "Full-stack React framework",
+  },
+  {
+    name: "React",
+    mark: "RC",
+    layer: "Interface",
+    purpose: "User interface development",
+  },
+  {
+    name: "TypeScript",
+    mark: "TS",
+    layer: "Language",
+    purpose: "Type-safe programming",
+  },
+  {
+    name: "Tailwind CSS",
+    mark: "TW",
+    layer: "Design layer",
+    purpose: "UI styling",
+  },
+  {
+    name: "Neon PostgreSQL",
+    mark: "PG",
+    layer: "Database",
+    purpose: "Cloud relational database",
+  },
+  {
+    name: "Prisma ORM",
+    mark: "PR",
+    layer: "Data layer",
+    purpose: "Database access and modeling",
+  },
+  {
+    name: "Git/GitHub",
+    mark: "GH",
+    layer: "Collaboration",
+    purpose: "Version control",
+  },
+  {
+    name: "Vercel",
+    mark: "VC",
+    layer: "Deployment",
+    purpose: "Application deployment",
+  },
+  {
+    name: "Cloudflare",
+    mark: "CF",
+    layer: "Edge & security",
+    purpose: "CDN, DNS, and edge security",
+  },
+];
+
 export const courseModules: CourseModule[] = [
   {
     week: "Module 01",
@@ -131,7 +213,6 @@ export const demoUsers = [
     email: "amara@studio.ng",
     status: "active" as const,
     paidAt: "2026-09-02",
-    channel: "Telegram",
   },
   {
     id: "usr_02",
@@ -139,7 +220,6 @@ export const demoUsers = [
     email: "dan@whitfield.dev",
     status: "active" as const,
     paidAt: "2026-09-04",
-    channel: "Telegram",
   },
   {
     id: "usr_03",
@@ -147,7 +227,6 @@ export const demoUsers = [
     email: "priya@design.co",
     status: "pending" as const,
     paidAt: "2026-09-07",
-    channel: "—",
   },
   {
     id: "usr_04",
@@ -155,7 +234,6 @@ export const demoUsers = [
     email: "emeka@build.africa",
     status: "active" as const,
     paidAt: "2026-09-08",
-    channel: "Telegram",
   },
   {
     id: "usr_05",
@@ -163,6 +241,5 @@ export const demoUsers = [
     email: "sofia@mendes.io",
     status: "refunded" as const,
     paidAt: "2026-08-28",
-    channel: "—",
   },
 ];

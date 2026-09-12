@@ -22,7 +22,6 @@ model User {
   password  String
   status    UserStatus @default(PENDING)
   paidAt    DateTime?
-  channel   String?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
@@ -73,4 +72,21 @@ model Faq {
 
   @@index([sortOrder])
   @@map("faqs")
+}
+
+/// Technology shown on the marketing stack section and managed in /admin/tech-stack.
+model TechStackItem {
+  id        String   @id @default(cuid())
+  name      String
+  mark      String
+  logo      String   @default("")
+  layer     String
+  purpose   String
+  sortOrder Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([sortOrder])
+  @@map("tech_stack_items")
 }

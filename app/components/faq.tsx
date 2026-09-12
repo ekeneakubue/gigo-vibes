@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { faqItems } from "../lib/content";
+import type { AdminFaq } from "../lib/faqs";
 import { SectionHeading } from "./section-heading";
 
-export function Faq() {
+export function Faq({ items }: { items: AdminFaq[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
@@ -12,12 +12,12 @@ export function Faq() {
       <SectionHeading eyebrow="FAQ" title="Questions we get every cohort" />
 
       <div className="mt-12 space-y-3">
-        {faqItems.map((faq, index) => {
+        {items.map((faq, index) => {
           const isOpen = openIndex === index;
 
           return (
             <div
-              key={faq.question}
+              key={faq.id}
               className={`rounded-2xl border bg-foreground/[0.03] transition-colors ${
                 isOpen
                   ? "border-foreground/35 bg-foreground/6"

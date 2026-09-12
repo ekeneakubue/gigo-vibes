@@ -33,6 +33,20 @@ const navItems = [
     ),
   },
   {
+    href: "/admin/tech-stack",
+    label: "Tech Stack",
+    icon: (
+      <path
+        d="m12 3 8 4.5-8 4.5-8-4.5zM4 12l8 4.5 8-4.5M4 16.5 12 21l8-4.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    ),
+  },
+  {
     href: "/admin/curriculum",
     label: "Curriculum",
     icon: (
@@ -72,7 +86,7 @@ export function AdminSidebar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="admin-sidebar flex flex-col lg:w-64 lg:shrink-0">
+    <div className="admin-sidebar flex shrink-0 flex-col lg:h-full lg:w-64">
       <div className="flex items-center justify-between border-b border-white/8 px-5 py-4 lg:hidden">
         <Logo />
         <button
@@ -103,18 +117,18 @@ export function AdminSidebar() {
       </div>
 
       <aside
-        className={`flex flex-1 flex-col border-white/8 lg:border-r ${
+        className={`flex flex-1 flex-col border-white/8 lg:min-h-0 lg:border-r ${
           open ? "block border-b" : "hidden lg:flex"
         }`}
       >
-        <div className="hidden border-b border-white/8 px-5 py-5 lg:block">
+        <div className="hidden shrink-0 border-b border-white/8 px-5 py-5 lg:block">
           <Logo />
           <p className="mt-3 font-mono text-[10px] tracking-[0.2em] text-[#9aa1bd] uppercase">
             Admin console
           </p>
         </div>
 
-        <nav className="flex flex-col gap-1 p-3">
+        <nav className="flex flex-1 flex-col gap-1 overflow-y-auto p-3">
           {navItems.map((item) => {
             const active = isActive(pathname, item.href);
             return (
@@ -137,7 +151,7 @@ export function AdminSidebar() {
           })}
         </nav>
 
-        <div className="mt-auto hidden border-t border-white/8 p-4 lg:block">
+        <div className="mt-auto hidden shrink-0 border-t border-white/8 p-4 lg:block">
           <Link
             href="/"
             className="text-xs text-[#9aa1bd] transition-colors hover:text-[#e9eaf5]"

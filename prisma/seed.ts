@@ -1,9 +1,12 @@
+import { hash } from "bcryptjs";
 import { PrismaClient, UserStatus } from "@prisma/client";
-import { courseModules, demoUsers, faqItems } from "../app/lib/content";
+import { courseModules, demoUsers, faqItems, techStack } from "../app/lib/content";
 
 const prisma = new PrismaClient();
 
 async function main() {
+  const demoPasswordHash = await hash("ChangeMe123!", 10);
+
   for (const [index, module] of courseModules.entries()) {
     await prisma.curriculumModule.upsert({
       where: { id: `seed_module_${index + 1}` },
@@ -57,6 +60,31 @@ async function main() {
     });
   }
 
+  for (const [index, tech] of techStack.entries()) {
+    await prisma.techStackItem.upsert({
+      where: { id: `seed_tech_${index + 1}` },
+      update: {
+        name: tech.name,
+        mark: tech.mark,
+        logo: "",
+        layer: tech.layer,
+        purpose: tech.purpose,
+        sortOrder: index,
+        published: true,
+      },
+      create: {
+        id: `seed_tech_${index + 1}`,
+        name: tech.name,
+        mark: tech.mark,
+        logo: "",
+        layer: tech.layer,
+        purpose: tech.purpose,
+        sortOrder: index,
+        published: true,
+      },
+    });
+  }
+
   const statusMap = {
     active: UserStatus.ACTIVE,
     pending: UserStatus.PENDING,
@@ -68,19 +96,17 @@ async function main() {
       where: { email: user.email },
       update: {
         name: user.name,
-        password: "ChangeMe123!",
+        password: demoPasswordHash,
         status: statusMap[user.status],
         paidAt: new Date(user.paidAt),
-        channel: user.channel === "—" ? null : user.channel,
       },
       create: {
         id: user.id,
         name: user.name,
         email: user.email,
-        password: "ChangeMe123!",
+        password: demoPasswordHash,
         status: statusMap[user.status],
         paidAt: new Date(user.paidAt),
-        channel: user.channel === "—" ? null : user.channel,
       },
     });
   }
