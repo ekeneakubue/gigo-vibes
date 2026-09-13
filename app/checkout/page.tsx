@@ -64,8 +64,8 @@ export default function CheckoutPage() {
           Pay <span className="text-gradient">₦10,000</span> to join the course
         </h1>
         <p className="mt-3 text-sm leading-6 text-muted">
-          After payment, Paystack will send you back here automatically so you
-          can join the Telegram training channel.
+          After payment you get lifetime Telegram access for this email — reopen
+          /payment anytime and unlock the invite again with the same address.
         </p>
 
         <form

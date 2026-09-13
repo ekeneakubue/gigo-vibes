@@ -13,6 +13,19 @@ enum UserStatus {
   REFUNDED
 }
 
+/// Console operator who can sign in to /admin.
+model Admin {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  /// Bcrypt hash — never store plain text.
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
+}
+
 /// Student who purchased (or was granted) course access.
 model User {
   id        String     @id @default(cuid())
@@ -28,6 +41,20 @@ model User {
   @@index([status])
   @@index([createdAt])
   @@map("users")
+}
+
+/// Successful Paystack payment that unlocks lifetime Telegram course access.
+model PaidEnrollment {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  reference String   @unique
+  amount    Int
+  paidAt    DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([paidAt])
+  @@map("paid_enrollments")
 }
 
 /// Curriculum module shown on the marketing site and managed in /admin/curriculum.

@@ -8,6 +8,7 @@ export type PaystackVerifyResult = {
   reference?: string;
   amount?: number;
   status?: string;
+  email?: string;
 };
 
 export function getPaystackSecret() {
@@ -103,10 +104,12 @@ export async function verifyPaystackReference(
       reference?: string;
       amount?: number;
       currency?: string;
+      customer?: { email?: string };
     };
   };
 
   const data = payload.data;
+  const email = data?.customer?.email?.trim().toLowerCase() || undefined;
   const paid =
     payload.status === true &&
     data?.status === "success" &&
@@ -119,6 +122,7 @@ export async function verifyPaystackReference(
       reference: data?.reference,
       amount: data?.amount,
       status: data?.status,
+      email,
     };
   }
 
@@ -127,9 +131,8 @@ export async function verifyPaystackReference(
     reference: data.reference ?? reference,
     amount: data.amount,
     status: data.status,
+    email,
   };
 }
 
-export const PAYMENT_ACCESS_COOKIE = "gigo_payment_access";
-/** Keep access for 7 days after a verified payment. */
-export const PAYMENT_ACCESS_MAX_AGE = 60 * 60 * 24 * 7;
+export { PAYMENT_ACCESS_COOKIE, PAYMENT_ACCESS_MAX_AGE } from "./course-access";

@@ -1,17 +1,34 @@
+import Link from "next/link";
 import { Logo } from "./logo";
 
 const columns = [
   {
     heading: "Learn",
-    links: ["Software track", "Business websites", "Portfolios", "Free lessons"],
+    links: [
+      { label: "Software track", href: "#top" },
+      { label: "Business websites", href: "#top" },
+      { label: "Portfolios", href: "#top" },
+      { label: "Free lessons", href: "#top" },
+    ],
   },
   {
     heading: "Resources",
-    links: ["Prompt library", "Cursor rules pack", "Design tokens", "Blog"],
+    links: [
+      { label: "Prompt library", href: "#top" },
+      { label: "Cursor rules pack", href: "#top" },
+      { label: "Design tokens", href: "#top" },
+      { label: "Blog", href: "#top" },
+    ],
   },
   {
     heading: "Company",
-    links: ["About GigoPlanet", "Mentors", "Contact", "Affiliates"],
+    links: [
+      { label: "About GigoPlanet", href: "#top" },
+      { label: "Mentors", href: "#top" },
+      { label: "Contact", href: "#top" },
+      { label: "Affiliates", href: "#top" },
+      { label: "Admin", href: "/admin" },
+    ],
   },
 ];
 
@@ -35,13 +52,22 @@ export function SiteFooter() {
               </p>
               <ul className="mt-4 space-y-2.5">
                 {column.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#top"
-                      className="text-sm text-muted transition-colors hover:text-foreground"
-                    >
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    {link.href.startsWith("/") ? (
+                      <Link
+                        href={link.href}
+                        className="text-sm text-muted transition-colors hover:text-foreground"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-sm text-muted transition-colors hover:text-foreground"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

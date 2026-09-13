@@ -151,10 +151,24 @@ export function AdminSidebar() {
           })}
         </nav>
 
-        <div className="mt-auto hidden shrink-0 border-t border-white/8 p-4 lg:block">
+        <div
+          className={`mt-auto shrink-0 space-y-3 border-t border-white/8 p-4 ${
+            open ? "block" : "hidden lg:block"
+          }`}
+        >
+          <button
+            type="button"
+            onClick={async () => {
+              await fetch("/api/admin/auth/logout", { method: "POST" });
+              window.location.assign("/admin/login");
+            }}
+            className="text-xs text-[#9aa1bd] transition-colors hover:text-[#e9eaf5]"
+          >
+            Sign out
+          </button>
           <Link
             href="/"
-            className="text-xs text-[#9aa1bd] transition-colors hover:text-[#e9eaf5]"
+            className="block text-xs text-[#9aa1bd] transition-colors hover:text-[#e9eaf5]"
           >
             ← Back to website
           </Link>

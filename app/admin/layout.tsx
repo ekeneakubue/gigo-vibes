@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { AdminSidebar } from "../components/admin/admin-sidebar";
+import { AdminShell } from "../components/admin/admin-shell";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -12,12 +12,5 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex h-screen flex-col overflow-hidden lg:flex-row">
-      <AdminSidebar />
-      <div className="admin-panel flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">
-        <main className="flex-1 px-5 py-6 sm:px-8 sm:py-8">{children}</main>
-      </div>
-    </div>
-  );
+  return <AdminShell>{children}</AdminShell>;
 }

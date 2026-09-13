@@ -1,14 +1,17 @@
 import { NextResponse } from "next/server";
 import {
+  createPaymentAccessToken,
   PAYMENT_ACCESS_COOKIE,
   PAYMENT_ACCESS_MAX_AGE,
-  verifyPaystackReference,
-} from "../../../lib/paystack";
+  upsertPaidEnrollment,
+} from "../../../lib/course-access";
 import { PAYSTACK_CHECKOUT_URL } from "../../../lib/links";
+import { verifyPaystackReference } from "../../../lib/paystack";
 
 /**
  * Paystack redirects here after payment with ?reference=...
- * We verify the charge, grant access, then send the student to /payment.
+ * We verify the charge, persist lifetime access for the email, then send
+ * the student to /payment with a long-lived access cookie.
  */
 export async function GET(request: Request) {
   const url = new URL(request.url);
@@ -20,12 +23,19 @@ export async function GET(request: Request) {
 
   const verification = await verifyPaystackReference(reference);
 
-  if (!verification.ok || !verification.reference) {
+  if (!verification.ok || !verification.reference || !verification.email) {
     return NextResponse.redirect(new URL(PAYSTACK_CHECKOUT_URL, url.origin));
   }
 
+  await upsertPaidEnrollment({
+    email: verification.email,
+    reference: verification.reference,
+    amount: verification.amount ?? 0,
+  });
+
+  const token = await createPaymentAccessToken(verification.email);
   const response = NextResponse.redirect(new URL("/payment", url.origin));
-  response.cookies.set(PAYMENT_ACCESS_COOKIE, verification.reference, {
+  response.cookies.set(PAYMENT_ACCESS_COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
     secure: process.env.NODE_ENV === "production",

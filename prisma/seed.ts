@@ -110,6 +110,23 @@ async function main() {
       },
     });
   }
+
+  const adminPasswordHash = await hash("ChangeMe123!", 10);
+  await prisma.$executeRaw`
+    INSERT INTO admins (id, name, email, "passwordHash", "createdAt", "updatedAt")
+    VALUES (
+      ${"seed_admin_1"},
+      ${"GigoPlanet Admin"},
+      ${"admin@gigoplanet.com"},
+      ${adminPasswordHash},
+      NOW(),
+      NOW()
+    )
+    ON CONFLICT (email) DO UPDATE SET
+      name = EXCLUDED.name,
+      "passwordHash" = EXCLUDED."passwordHash",
+      "updatedAt" = NOW()
+  `;
 }
 
 main()
