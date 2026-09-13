@@ -2,8 +2,10 @@ import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
 import { prisma } from "../../../lib/prisma";
 import {
+  parseAdminUserRole,
   parseAdminUserStatus,
   serializeUser,
+  toPrismaUserRole,
   toPrismaUserStatus,
 } from "../../../lib/users";
 
@@ -12,6 +14,7 @@ const userSelect = {
   name: true,
   email: true,
   status: true,
+  role: true,
   paidAt: true,
 } as const;
 
@@ -37,12 +40,14 @@ export async function POST(request: Request) {
       email?: string;
       password?: string;
       status?: string;
+      role?: string;
     };
 
     const name = body.name?.trim() ?? "";
     const email = body.email?.trim().toLowerCase() ?? "";
     const password = body.password ?? "";
     const status = parseAdminUserStatus(body.status) ?? "pending";
+    const role = parseAdminUserRole(body.role) ?? "staff";
 
     if (!name) {
       return NextResponse.json({ error: "Name is required." }, { status: 400 });
@@ -75,6 +80,7 @@ export async function POST(request: Request) {
         email,
         password: hashedPassword,
         status: toPrismaUserStatus(status),
+        role: toPrismaUserRole(role),
         paidAt: status === "active" ? new Date() : null,
       },
       select: userSelect,

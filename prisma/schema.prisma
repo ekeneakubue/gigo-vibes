@@ -13,6 +13,11 @@ enum UserStatus {
   REFUNDED
 }
 
+enum UserRole {
+  ADMIN
+  STAFF
+}
+
 /// Console operator who can sign in to /admin.
 model Admin {
   id           String   @id @default(cuid())
@@ -34,11 +39,13 @@ model User {
   /// Store a hashed password in production — never plain text.
   password  String
   status    UserStatus @default(PENDING)
+  role      UserRole   @default(STAFF)
   paidAt    DateTime?
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
   @@index([status])
+  @@index([role])
   @@index([createdAt])
   @@map("users")
 }

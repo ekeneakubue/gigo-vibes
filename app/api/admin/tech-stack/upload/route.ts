@@ -1,6 +1,5 @@
-import { mkdir, writeFile } from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
+import { uploadToR2 } from "../../../../lib/r2";
 
 const ALLOWED_TYPES = new Set([
   "image/png",
@@ -58,13 +57,16 @@ export async function POST(request: Request) {
       .slice(0, 40);
 
     const filename = `${safeName || "logo"}-${Date.now()}.${extension}`;
-    const directory = path.join(process.cwd(), "public", "tech-logos");
-    await mkdir(directory, { recursive: true });
-
+    const key = `tech-logos/${filename}`;
     const buffer = Buffer.from(await file.arrayBuffer());
-    await writeFile(path.join(directory, filename), buffer);
 
-    return NextResponse.json({ logo: `/tech-logos/${filename}` });
+    const logo = await uploadToR2({
+      key,
+      body: buffer,
+      contentType: file.type,
+    });
+
+    return NextResponse.json({ logo });
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unable to upload logo";

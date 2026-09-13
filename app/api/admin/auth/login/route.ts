@@ -7,7 +7,7 @@ import {
   clearLoginRateLimit,
   createAdminSessionToken,
   sanitizeLoginInput,
-} from "../../../lib/admin-auth";
+} from "../../../../lib/admin-auth";
 
 function clientIp(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for");

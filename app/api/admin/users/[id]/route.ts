@@ -2,8 +2,10 @@ import { hash } from "bcryptjs";
 import { NextResponse } from "next/server";
 import { prisma } from "../../../../lib/prisma";
 import {
+  parseAdminUserRole,
   parseAdminUserStatus,
   serializeUser,
+  toPrismaUserRole,
   toPrismaUserStatus,
 } from "../../../../lib/users";
 
@@ -12,6 +14,7 @@ const userSelect = {
   name: true,
   email: true,
   status: true,
+  role: true,
   paidAt: true,
 } as const;
 
@@ -27,6 +30,7 @@ export async function PATCH(request: Request, context: RouteContext) {
       email?: string;
       password?: string;
       status?: string;
+      role?: string;
     };
 
     const existing = await prisma.user.findUnique({
@@ -41,6 +45,7 @@ export async function PATCH(request: Request, context: RouteContext) {
     const email = body.email?.trim().toLowerCase() ?? "";
     const password = body.password ?? "";
     const status = parseAdminUserStatus(body.status);
+    const role = parseAdminUserRole(body.role);
 
     if (!name) {
       return NextResponse.json({ error: "Name is required." }, { status: 400 });
@@ -60,6 +65,9 @@ export async function PATCH(request: Request, context: RouteContext) {
     if (!status) {
       return NextResponse.json({ error: "Invalid status." }, { status: 400 });
     }
+    if (!role) {
+      return NextResponse.json({ error: "Invalid role." }, { status: 400 });
+    }
 
     const emailOwner = await prisma.user.findUnique({
       where: { email },
@@ -78,6 +86,7 @@ export async function PATCH(request: Request, context: RouteContext) {
         name,
         email,
         status: toPrismaUserStatus(status),
+        role: toPrismaUserRole(role),
         paidAt:
           status === "active"
             ? (existing.paidAt ?? new Date())

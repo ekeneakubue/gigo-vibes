@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useId, useState } from "react";
-import type { AdminUser, AdminUserStatus } from "../../lib/users";
+import type { AdminUser, AdminUserRole, AdminUserStatus } from "../../lib/users";
 
 const statusStyles = {
   active: "bg-lime-brand/25 text-[#365314]",
@@ -14,6 +14,7 @@ const emptyForm = {
   email: "",
   password: "",
   status: "active" as AdminUserStatus,
+  role: "staff" as AdminUserRole,
 };
 
 const fieldClassName =
@@ -85,6 +86,7 @@ export function AdminUsersClient({
       email: user.email,
       password: "",
       status: user.status,
+      role: user.role,
     });
   }
 
@@ -137,6 +139,7 @@ export function AdminUsersClient({
             name: form.name,
             email: form.email,
             status: form.status,
+            role: form.role,
             ...(form.password ? { password: form.password } : {}),
           }),
         });
@@ -470,6 +473,25 @@ export function AdminUsersClient({
                     )}
                   </button>
                 </div>
+              </label>
+
+              <label className="block text-sm">
+                <span className="mb-1.5 block font-medium text-[#3d4558]">
+                  Role
+                </span>
+                <select
+                  value={form.role}
+                  onChange={(event) =>
+                    setForm((current) => ({
+                      ...current,
+                      role: event.target.value as AdminUserRole,
+                    }))
+                  }
+                  className={`${fieldClassName} text-[#0c0e16]`}
+                >
+                  <option value="admin">Admin</option>
+                  <option value="staff">Staff</option>
+                </select>
               </label>
 
               <label className="block text-sm">
