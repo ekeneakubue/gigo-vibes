@@ -18,10 +18,8 @@ export function Faq({ items }: { items: AdminFaq[] }) {
           return (
             <div
               key={faq.id}
-              className={`rounded-2xl border bg-foreground/[0.03] transition-colors ${
-                isOpen
-                  ? "border-foreground/35 bg-foreground/6"
-                  : "border-foreground/20"
+              className={`rounded-2xl bg-background transition-shadow ${
+                isOpen ? "neu-md" : "neu"
               }`}
             >
               <button
@@ -45,10 +43,10 @@ export function Faq({ items }: { items: AdminFaq[] }) {
                 </h3>
 
                 <span
-                  className={`grid size-8 shrink-0 place-items-center rounded-[10px] border transition-transform duration-200 ${
+                  className={`neu grid size-8 shrink-0 place-items-center rounded-[10px] bg-background transition-transform duration-200 ${
                     isOpen
-                      ? "rotate-45 border-fuchsia-brand/50 text-fuchsia-brand"
-                      : "border-foreground/12 text-muted"
+                      ? "rotate-45 text-fuchsia-brand"
+                      : "text-muted"
                   }`}
                 >
                   <svg

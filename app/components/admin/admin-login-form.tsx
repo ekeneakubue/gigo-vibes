@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Logo } from "../logo";
 
 const fieldClassName =
-  "w-full rounded-[12px] border-2 border-[#c5cad6] bg-white px-3.5 py-3 text-[#0c0e16] outline-none transition-colors focus:border-red-600";
+  "w-full rounded-[12px] border-2 border-[#c5cad6] bg-white px-3.5 py-3 text-[#0c0e16] outline-none transition-colors focus:border-blue-600";
 
 /** Only allow same-origin /admin paths — blocks open redirects. */
 function safeNextPath(value: string | null) {
@@ -65,7 +65,7 @@ export function AdminLoginForm() {
   return (
     <div className="relative flex min-h-screen overflow-hidden bg-[#f4f5f9]">
       <aside className="relative hidden w-[42%] shrink-0 flex-col justify-between overflow-hidden bg-[#090b14] px-10 py-12 text-[#e9eaf5] lg:flex">
-        <div className="pointer-events-none absolute -top-24 -left-16 size-[22rem] rounded-full bg-red-600/25 blur-[110px]" />
+        <div className="pointer-events-none absolute -top-24 -left-16 size-[22rem] rounded-full bg-blue-600/25 blur-[110px]" />
         <div className="pointer-events-none absolute right-0 bottom-0 size-[20rem] rounded-full bg-cyan-400/15 blur-[120px]" />
 
         <div className="relative">
@@ -75,7 +75,7 @@ export function AdminLoginForm() {
           </p>
           <h1 className="mt-3 max-w-sm text-4xl font-semibold tracking-tight text-balance">
             Build with AI.
-            <span className="mt-2 block text-[#ef4444]">Ship with taste.</span>
+            <span className="mt-2 block text-[#3b82f6]">Ship with taste.</span>
           </h1>
           <p className="mt-5 max-w-sm text-sm leading-7 text-[#9aa1bd]">
             Sign in to manage students, curriculum, tech stack and FAQs for
@@ -91,7 +91,7 @@ export function AdminLoginForm() {
       </aside>
 
       <div className="relative flex flex-1 items-center justify-center px-5 py-10 sm:px-8">
-        <div className="pointer-events-none absolute -top-20 -right-16 size-[18rem] rounded-full bg-red-500/10 blur-[100px]" />
+        <div className="pointer-events-none absolute -top-20 -right-16 size-[18rem] rounded-full bg-blue-500/10 blur-[100px]" />
 
         <div className="relative w-full max-w-md">
           <div className="mb-8 lg:hidden">
@@ -198,7 +198,7 @@ export function AdminLoginForm() {
             {error ? (
               <p
                 role="alert"
-                className="mt-4 rounded-[10px] border border-[#f1c4c4] bg-[#fef2f2] px-3 py-2.5 text-sm font-medium text-[#b91c1c]"
+                className="mt-4 rounded-[10px] border border-[#bfdbfe] bg-[#eff6ff] px-3 py-2.5 text-sm font-medium text-[#1d4ed8]"
               >
                 {error}
               </p>
@@ -207,7 +207,7 @@ export function AdminLoginForm() {
             <button
               type="submit"
               disabled={saving}
-              className="mt-6 w-full rounded-[12px] bg-red-600 px-4 py-3.5 text-xs font-extrabold tracking-wider text-white uppercase transition-opacity disabled:opacity-60"
+              className="mt-6 w-full rounded-[12px] bg-blue-600 px-4 py-3.5 text-xs font-extrabold tracking-wider text-white uppercase transition-opacity disabled:opacity-60"
             >
               {saving ? "Signing in…" : "Sign in"}
             </button>

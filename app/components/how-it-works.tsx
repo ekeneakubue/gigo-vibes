@@ -45,7 +45,7 @@ export function HowItWorks() {
               />
             ) : null}
 
-            <div className="glass h-full rounded-2xl p-7">
+            <div className="neu-lg h-full rounded-2xl bg-background p-7">
               <span className="font-mono text-[11px] tracking-[0.2em] text-fuchsia-brand uppercase">
                 {step.step}
               </span>

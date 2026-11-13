@@ -19,18 +19,16 @@ export function BuyButtons({
     >
       <a
         href={PAYSTACK_CHECKOUT_URL}
-        className={`w-full rounded-[10px] bg-red-600 px-8 py-3.5 text-center text-sm font-extrabold tracking-wider text-white uppercase shadow-lg shadow-red-600/35 transition-all hover:scale-[1.03] hover:bg-red-500 ${
+        className={`neu-md inline-flex w-full items-center justify-center gap-2 rounded-xl bg-background px-5 py-3 text-sm font-semibold text-foreground transition hover:-translate-y-px ${
           isRow ? "sm:w-auto sm:shrink-0" : ""
         }`}
       >
-        Buy now — ₦10,000
+        Buy now — <span className="font-bold text-red-600">₦5,000</span>
       </a>
       <a
         href={PAYSTACK_CHECKOUT_URL}
-        className={`w-full rounded-[10px] px-8 py-3.5 text-center text-sm font-semibold transition-colors ${
-          isRow
-            ? "bg-white text-black hover:bg-white/90 sm:w-auto sm:shrink-0"
-            : "border border-foreground/15 bg-foreground/5 text-foreground hover:bg-foreground/10"
+        className={`neu inline-flex w-full items-center justify-center gap-2 rounded-xl bg-background px-5 py-3 text-sm font-semibold text-muted transition hover:opacity-80 active:opacity-60 ${
+          isRow ? "sm:w-auto sm:shrink-0" : ""
         }`}
       >
         Not Nigerian? — Buy Here

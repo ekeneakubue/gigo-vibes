@@ -35,9 +35,7 @@ const features = [
 
 export function Features() {
   return (
-    <section className="relative overflow-hidden border-y border-foreground/8 bg-ink-900/40 py-24">
-      <div className="pointer-events-none absolute -right-40 bottom-0 size-[28rem] rounded-full bg-fuchsia-brand/12 blur-[130px]" />
-
+    <section className="relative overflow-hidden py-24">
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="Why GigoPlanet"
@@ -50,11 +48,11 @@ export function Features() {
           }
         />
 
-        <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-foreground/8 bg-foreground/8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
             <div
               key={feature.title}
-              className="bg-ink-950/85 p-7 transition-colors hover:bg-ink-850"
+              className="neu-lg rounded-2xl bg-background p-7 transition hover:-translate-y-px"
             >
               <h3 className="text-base font-semibold tracking-tight">
                 {feature.title}

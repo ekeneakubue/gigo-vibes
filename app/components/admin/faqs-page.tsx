@@ -9,7 +9,7 @@ const emptyForm = {
 };
 
 const fieldClassName =
-  "w-full rounded-[10px] border-2 border-[#c5cad6] bg-white px-3.5 py-2.5 outline-none focus:border-red-600";
+  "w-full rounded-[10px] border-2 border-[#c5cad6] bg-white px-3.5 py-2.5 outline-none focus:border-blue-600";
 
 type ModalMode = "create" | "edit";
 
@@ -193,13 +193,13 @@ export function AdminFaqsClient({
             These entries power the FAQ accordion on the marketing homepage.
           </p>
           {loadError ? (
-            <p className="mt-3 text-sm font-medium text-[#b91c1c]">{loadError}</p>
+            <p className="mt-3 text-sm font-medium text-[#1d4ed8]">{loadError}</p>
           ) : null}
         </div>
         <button
           type="button"
           onClick={openCreateModal}
-          className="rounded-[10px] bg-red-600 px-5 py-3 text-xs font-extrabold tracking-wider text-white uppercase"
+          className="rounded-[10px] bg-blue-600 px-5 py-3 text-xs font-extrabold tracking-wider text-white uppercase"
         >
           Add FAQ
         </button>
@@ -252,7 +252,7 @@ export function AdminFaqsClient({
                         type="button"
                         onClick={() => openDeleteModal(faq)}
                         disabled={deleting && faqToDelete?.id === faq.id}
-                        className="grid size-9 place-items-center rounded-[10px] border border-[#f1c4c4] text-[#b91c1c] transition-colors hover:bg-[#fef2f2] disabled:opacity-50"
+                        className="grid size-9 place-items-center rounded-[10px] border border-[#bfdbfe] text-[#1d4ed8] transition-colors hover:bg-[#eff6ff] disabled:opacity-50"
                         aria-label={`Delete ${faq.question}`}
                         title="Delete"
                       >
@@ -365,7 +365,7 @@ export function AdminFaqsClient({
               </label>
 
               {error ? (
-                <p className="text-sm font-medium text-[#b91c1c]">{error}</p>
+                <p className="text-sm font-medium text-[#1d4ed8]">{error}</p>
               ) : null}
 
               <div className="flex flex-col-reverse gap-2 pt-2 sm:flex-row sm:justify-end">
@@ -379,7 +379,7 @@ export function AdminFaqsClient({
                 <button
                   type="submit"
                   disabled={saving}
-                  className="rounded-[10px] bg-red-600 px-4 py-2.5 text-xs font-extrabold tracking-wider text-white uppercase disabled:opacity-60"
+                  className="rounded-[10px] bg-blue-600 px-4 py-2.5 text-xs font-extrabold tracking-wider text-white uppercase disabled:opacity-60"
                 >
                   {saving
                     ? "Saving…"
@@ -408,7 +408,7 @@ export function AdminFaqsClient({
             className="relative z-10 w-full max-w-md rounded-2xl border border-[#d5dae6] bg-white p-5 shadow-xl sm:p-6"
           >
             <div className="flex items-start gap-4">
-              <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#fef2f2] text-[#b91c1c]">
+              <div className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#eff6ff] text-[#1d4ed8]">
                 <svg
                   viewBox="0 0 24 24"
                   className="size-5"
@@ -425,7 +425,7 @@ export function AdminFaqsClient({
                 </svg>
               </div>
               <div className="min-w-0 flex-1">
-                <p className="font-mono text-[11px] tracking-[0.2em] text-[#b91c1c] uppercase">
+                <p className="font-mono text-[11px] tracking-[0.2em] text-[#1d4ed8] uppercase">
                   Delete FAQ
                 </p>
                 <h2
@@ -445,7 +445,7 @@ export function AdminFaqsClient({
             </div>
 
             {deleteError ? (
-              <p className="mt-4 text-sm font-medium text-[#b91c1c]">
+              <p className="mt-4 text-sm font-medium text-[#1d4ed8]">
                 {deleteError}
               </p>
             ) : null}
@@ -463,7 +463,7 @@ export function AdminFaqsClient({
                 type="button"
                 onClick={confirmDelete}
                 disabled={deleting}
-                className="rounded-[10px] bg-red-600 px-4 py-2.5 text-xs font-extrabold tracking-wider text-white uppercase disabled:opacity-60"
+                className="rounded-[10px] bg-blue-600 px-4 py-2.5 text-xs font-extrabold tracking-wider text-white uppercase disabled:opacity-60"
               >
                 {deleting ? "Deleting…" : "Delete FAQ"}
               </button>

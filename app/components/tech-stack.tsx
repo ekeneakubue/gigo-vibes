@@ -5,11 +5,8 @@ export function TechStack({ items }: { items: AdminTechStackItem[] }) {
   return (
     <section
       id="stack"
-      className="relative overflow-hidden border-y border-foreground/8 bg-ink-900/40 py-24"
+      className="relative overflow-hidden py-24"
     >
-      <div className="pointer-events-none absolute top-0 -right-32 size-[26rem] rounded-full bg-cyan-brand/10 blur-[120px]" />
-      <div className="pointer-events-none absolute -bottom-24 -left-24 size-[22rem] rounded-full bg-violet-brand/10 blur-[130px]" />
-
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8">
         <SectionHeading
           align="left"
@@ -27,16 +24,11 @@ export function TechStack({ items }: { items: AdminTechStackItem[] }) {
           {items.map((tech) => (
             <article
               key={tech.id}
-              className="group glass relative overflow-hidden rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:border-foreground/25"
+              className="group neu-lg relative overflow-hidden rounded-2xl bg-background p-6 transition-all duration-300 hover:-translate-y-1"
             >
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-16 -right-16 size-40 rounded-full bg-cyan-brand/40 opacity-0 blur-3xl transition-opacity duration-300 group-hover:opacity-25"
-              />
-
               <div className="relative flex items-start gap-4">
                 {tech.logo ? (
-                  <span className="relative flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-foreground/12 bg-ink-850">
+                  <span className="neu relative flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-background">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={tech.logo}
@@ -47,7 +39,7 @@ export function TechStack({ items }: { items: AdminTechStackItem[] }) {
                 ) : (
                   <span
                     aria-hidden="true"
-                    className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-ink-800 font-mono text-[13px] font-semibold tracking-tight text-foreground"
+                    className="neu flex size-11 shrink-0 items-center justify-center rounded-xl bg-background font-mono text-[13px] font-semibold tracking-tight text-foreground"
                   >
                     {tech.mark}
                   </span>

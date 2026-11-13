@@ -13,15 +13,13 @@ export function Curriculum({
 
   return (
     <section id="curriculum" className="relative overflow-hidden py-24">
-      <div className="pointer-events-none absolute top-1/3 -left-40 size-[30rem] rounded-full bg-violet-brand/12 blur-[130px]" />
-
       <div className="relative mx-auto w-full max-w-6xl px-5 sm:px-8">
         <SectionHeading
           align="left"
           eyebrow="Curriculum"
           title={
             <>
-              Six modules from prompt to{" "}
+              Eight modules from prompt to{" "}
               <span className="text-gradient">production</span>
             </>
           }
@@ -40,10 +38,8 @@ export function Curriculum({
               return (
                 <div
                   key={module.id}
-                  className={`rounded-2xl border bg-foreground/[0.03] transition-colors ${
-                    isOpen
-                      ? "border-foreground/35 bg-foreground/6"
-                      : "border-foreground/20"
+                  className={`rounded-2xl bg-background transition-shadow ${
+                    isOpen ? "neu-md" : "neu"
                   }`}
                 >
                   <button
@@ -83,10 +79,10 @@ export function Curriculum({
                         {module.lessons.length} lessons
                       </span>
                       <span
-                        className={`grid size-8 place-items-center rounded-[10px] border transition-transform duration-200 ${
+                        className={`neu grid size-8 place-items-center rounded-[10px] bg-background transition-transform duration-200 ${
                           isOpen
-                            ? "rotate-45 border-fuchsia-brand/50 text-fuchsia-brand"
-                            : "border-foreground/12 text-muted"
+                            ? "rotate-45 text-fuchsia-brand"
+                            : "text-muted"
                         }`}
                       >
                         <svg

@@ -68,7 +68,7 @@ export function PaymentAccessForm() {
         </label>
 
         {error ? (
-          <p className="rounded-[10px] border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">
+          <p className="rounded-[10px] border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-sm text-blue-700">
             {error}
           </p>
         ) : null}
@@ -76,7 +76,7 @@ export function PaymentAccessForm() {
         <button
           type="submit"
           disabled={loading}
-          className="inline-flex w-full items-center justify-center rounded-[10px] bg-red-600 px-8 py-4 text-sm font-extrabold tracking-wider text-white uppercase shadow-lg shadow-red-600/35 transition-all hover:bg-red-500 disabled:opacity-70"
+          className="inline-flex w-full items-center justify-center rounded-[10px] bg-blue-600 px-8 py-4 text-sm font-extrabold tracking-wider text-white uppercase shadow-lg shadow-blue-600/35 transition-all hover:bg-blue-500 disabled:opacity-70"
         >
           {loading ? "Checking…" : "Unlock Telegram invite"}
         </button>

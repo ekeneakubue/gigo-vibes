@@ -1,7 +1,7 @@
 export const PAYSTACK_SHOP_URL = "https://paystack.shop/pay/gigoplanet";
 export const PAYSTACK_PAGE_SLUG = "gigoplanet";
-/** Amount in kobo (₦10,000) */
-export const COURSE_AMOUNT_KOBO = 1_000_000;
+/** Amount in kobo (₦5,000) */
+export const COURSE_AMOUNT_KOBO = 500_000;
 
 /** Where Paystack should send buyers after a successful charge. */
 export function getPaymentSuccessUrl(origin: string) {

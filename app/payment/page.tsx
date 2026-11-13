@@ -54,14 +54,10 @@ export default async function PaymentPage({ searchParams }: PaymentPageProps) {
   return (
     <main className="relative flex min-h-full flex-1 flex-col overflow-hidden">
       <div className="grid-backdrop pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute -top-32 left-1/4 size-[28rem] rounded-full bg-violet-brand/30 blur-[120px]" />
-      <div className="pointer-events-none absolute right-0 -bottom-40 size-[26rem] rounded-full bg-fuchsia-brand/20 blur-[120px]" />
-      <div className="pointer-events-none absolute top-1/3 right-1/4 size-[18rem] rounded-full bg-lime-brand/10 blur-[100px]" />
 
       {hasAccess ? (
         <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-1 flex-col items-center justify-center px-5 py-16 text-center sm:px-8 sm:py-15">
-          <div className="animate-float relative mb-8 grid size-20 place-items-center rounded-[20px] bg-lime-brand/15 ring-1 ring-lime-brand/35">
-            <span className="absolute inset-0 rounded-[20px] bg-lime-brand/10 blur-xl" />
+          <div className="neu-lg animate-float relative mb-8 grid size-20 place-items-center rounded-[20px] bg-background">
             <svg
               viewBox="0 0 24 24"
               className="relative size-10 text-lime-brand"

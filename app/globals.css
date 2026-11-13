@@ -7,8 +7,8 @@
   --color-ink-800: var(--ink-800);
   --color-ink-700: var(--ink-700);
 
-  --color-violet-brand: #dc2626;
-  --color-fuchsia-brand: #ef4444;
+  --color-violet-brand: #2563eb;
+  --color-fuchsia-brand: #3b82f6;
   --color-cyan-brand: var(--cyan-brand);
   --color-lime-brand: var(--lime-brand);
 
@@ -18,6 +18,9 @@
 
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --shadow-neu-light: var(--shadow-light);
+  --shadow-neu-dark: var(--shadow-dark);
 
   --animate-marquee: marquee 38s linear infinite;
   --animate-float: float 9s ease-in-out infinite;
@@ -75,36 +78,43 @@
 }
 
 :root {
-  color-scheme: dark;
-  --page-bg: #05060c;
-  --page-fg: #e9eaf5;
-  --page-muted: #9aa1bd;
-  --ink-950: #05060c;
-  --ink-900: #090b14;
-  --ink-850: #0d1020;
-  --ink-800: #12162a;
-  --ink-700: #1b2039;
-  --cyan-brand: #38e1ff;
-  --lime-brand: #b6ff5c;
-  --glass-from: rgb(255 255 255 / 0.07);
-  --glass-to: rgb(255 255 255 / 0.02);
-  --glass-border: rgb(255 255 255 / 0.09);
-  --grid-line: rgb(255 255 255 / 0.045);
+  color-scheme: light;
+  /* Mirrored from gigolabs.vercel.app */
+  --page-bg: #dde1e7;
+  --page-fg: #212529;
+  --page-muted: rgb(33 37 41 / 0.65);
+  --ink-950: #dde1e7;
+  --ink-900: #d5dae2;
+  --ink-850: #cfd5de;
+  --ink-800: #c4cbd6;
+  --ink-700: #b8c0cc;
+  --cyan-brand: #0e7490;
+  --lime-brand: #4d7c0f;
+  --shadow-light: rgb(255 255 255 / 0.55);
+  --shadow-dark: rgb(94 104 121 / 0.35);
+  --shadow-dark-soft: rgb(94 104 121 / 0.3);
+  --shadow-dark-strong: rgb(94 104 121 / 0.4);
+  --glass-from: #dde1e7;
+  --glass-to: #dde1e7;
+  --glass-border: transparent;
+  --grid-line: rgb(33 37 41 / 0.06);
 }
 
 /* Light content area for /admin while the sidebar stays dark. */
 .admin-panel {
   color-scheme: light;
-  --page-bg: #f4f5f9;
-  --page-fg: #0c0e16;
-  --page-muted: #5c647a;
-  --ink-950: #f4f5f9;
+  --page-bg: #dde1e7;
+  --page-fg: #212529;
+  --page-muted: rgb(33 37 41 / 0.65);
+  --ink-950: #dde1e7;
   --ink-900: #ffffff;
-  --ink-850: #eef0f6;
-  --ink-800: #e5e8f0;
-  --ink-700: #d5dae6;
+  --ink-850: #d5dae2;
+  --ink-800: #cfd5de;
+  --ink-700: #c4cbd6;
   --cyan-brand: #0e7490;
   --lime-brand: #4d7c0f;
+  --shadow-light: rgb(255 255 255 / 0.55);
+  --shadow-dark: rgb(94 104 121 / 0.35);
   background-color: var(--page-bg);
   color: var(--page-fg);
 }
@@ -125,32 +135,68 @@ html {
 body {
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family:
+    var(--font-sans),
+    "Geist Fallback",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
 }
 
 ::selection {
-  background-color: color-mix(in oklab, var(--color-violet-brand) 45%, transparent);
+  background-color: color-mix(in oklab, var(--color-violet-brand) 35%, transparent);
 }
 
 @utility text-gradient {
   background-image: linear-gradient(
     100deg,
-    #ff7a7a,
+    #60a5fa,
     var(--color-violet-brand) 50%,
-    #b91c1c
+    #1d4ed8
   );
   background-clip: text;
   color: transparent;
 }
 
+/* Neumorphic surfaces — matched to gigolabs */
+@utility neu {
+  box-shadow:
+    -3px -3px 6px var(--shadow-light),
+    3px 3px 6px var(--shadow-dark-soft);
+}
+
+@utility neu-md {
+  box-shadow:
+    -5px -5px 9px var(--shadow-light),
+    5px 5px 9px var(--shadow-dark);
+}
+
+@utility neu-lg {
+  box-shadow:
+    -8px -8px 16px var(--shadow-light),
+    8px 8px 16px var(--shadow-dark-strong);
+}
+
+@utility neu-inset {
+  box-shadow:
+    inset -3px -3px 6px rgb(255 255 255 / 0.4),
+    inset 3px 3px 6px var(--shadow-dark-soft);
+}
+
+@utility neu-header {
+  box-shadow:
+    0 -2px 6px var(--shadow-light),
+    0 4px 8px rgb(94 104 121 / 0.25);
+}
+
 @utility glass {
-  background-image: linear-gradient(
-    160deg,
-    var(--glass-from),
-    var(--glass-to)
-  );
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(14px);
+  background-color: var(--page-bg);
+  border: 1px solid transparent;
+  box-shadow:
+    -8px -8px 16px var(--shadow-light),
+    8px 8px 16px var(--shadow-dark-strong);
 }
 
 @utility grid-backdrop {

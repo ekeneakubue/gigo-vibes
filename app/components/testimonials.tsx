@@ -66,8 +66,8 @@ function ReviewVideoCard({
   }
 
   return (
-    <figure className="overflow-hidden rounded-2xl border border-foreground/12 bg-ink-950/70">
-      <div className="relative aspect-4/5 overflow-hidden bg-ink-900">
+    <figure className="neu-lg overflow-hidden rounded-2xl bg-background">
+      <div className="relative aspect-4/5 overflow-hidden bg-ink-850">
         <div
           className={`absolute inset-0 bg-linear-to-br ${testimonial.accent} opacity-35`}
         />

@@ -138,7 +138,7 @@ export function AdminSidebar() {
                 onClick={() => setOpen(false)}
                 className={`flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-sm transition-colors ${
                   active
-                    ? "bg-red-600/20 font-semibold text-red-400"
+                    ? "bg-blue-600/20 font-semibold text-blue-400"
                     : "text-[#9aa1bd] hover:bg-white/5 hover:text-[#e9eaf5]"
                 }`}
               >

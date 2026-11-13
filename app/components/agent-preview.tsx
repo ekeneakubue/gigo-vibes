@@ -13,8 +13,8 @@ const files = [
 
 export function AgentPreview() {
   return (
-    <div className="glass relative rounded-2xl p-2 shadow-2xl shadow-black/60">
-      <div className="rounded-xl bg-ink-900/90 ring-1 ring-white/5">
+    <div className="neu-lg relative rounded-2xl bg-background p-2">
+      <div className="neu-inset rounded-xl bg-background">
         <div className="flex items-center gap-2 border-b border-foreground/8 px-4 py-3">
           <span className="size-2.5 rounded-full bg-[#ff5f57]" />
           <span className="size-2.5 rounded-full bg-[#febc2e]" />
@@ -73,7 +73,7 @@ export function AgentPreview() {
             ))}
           </ul>
 
-          <div className="rounded-lg border border-foreground/8 bg-ink-950/60 p-3">
+          <div className="neu-inset rounded-lg bg-background p-3">
             <p className="font-mono text-[10px] tracking-widest text-muted uppercase">
               Changed files
             </p>
@@ -95,7 +95,7 @@ export function AgentPreview() {
         </div>
       </div>
 
-      <div className="glass absolute -right-4 -bottom-6 hidden items-center gap-3 rounded-xl px-4 py-3 sm:flex">
+      <div className="neu absolute -right-4 -bottom-6 hidden items-center gap-3 rounded-xl bg-background px-4 py-3 sm:flex">
         <span className="grid size-9 place-items-center rounded-lg bg-lime-brand/15 text-lime-brand">
           <svg viewBox="0 0 20 20" className="size-4.5" aria-hidden="true">
             <path

@@ -1,5 +1,6 @@
 import { AgentPreview } from "./agent-preview";
 import { BuyButtons } from "./buy-buttons";
+import { HeroParticles } from "./hero-particles";
 
 const stats = [
   { value: "12,400+", label: "Builders trained" },
@@ -11,14 +12,14 @@ const stats = [
 export function Hero() {
   return (
     <section id="top" className="relative overflow-hidden">
-      <div className="grid-backdrop pointer-events-none absolute inset-0" />
-      <div className="pointer-events-none absolute -top-40 -left-32 size-[34rem] rounded-full bg-violet-brand/25 blur-[120px]" />
-      <div className="pointer-events-none absolute -top-24 right-0 size-[30rem] rounded-full bg-fuchsia-brand/16 blur-[120px]" />
-      <div className="pointer-events-none absolute top-72 left-1/3 size-[26rem] rounded-full bg-violet-brand/16 blur-[130px]" />
+      <div className="pointer-events-none absolute top-0 left-0 z-0 h-[100vh] w-full overflow-hidden">
+        <HeroParticles />
+      </div>
+      <div className="grid-backdrop pointer-events-none absolute inset-0 z-[1]" />
 
-      <div className="relative mx-auto grid w-full max-w-6xl gap-16 px-5 pt-16 pb-24 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pt-10 lg:pb-32">
+      <div className="relative z-[2] mx-auto grid w-full max-w-6xl gap-16 px-5 pt-16 pb-24 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:items-center lg:pt-10 lg:pb-32">
         <div>
-          <h1 className="mt-6 text-4xl leading-[1.05] font-semibold tracking-tight text-balance sm:text-6xl">
+          <h1 className="mt-6 text-4xl leading-[1.05] font-medium tracking-tight text-balance sm:text-6xl">
             Learn How to Design Software with{" "}
             <span className="text-gradient">AI as your co-founder</span>.
           </h1>

@@ -15,7 +15,7 @@ const tools = [
 
 export function ToolMarquee() {
   return (
-    <section className="border-y border-foreground/8 bg-ink-900/40 py-10">
+    <section className="neu-inset py-10">
       <p className="text-center font-mono text-[11px] tracking-[0.24em] text-muted uppercase">
         The AI/Tools/Stack you will actually use
       </p>
