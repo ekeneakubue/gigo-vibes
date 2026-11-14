@@ -87,15 +87,28 @@ export async function POST(request: Request) {
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Unable to sign in";
-    const status = message.includes("Too many") ? 429 : 500;
+
+    if (message.includes("Too many")) {
+      return NextResponse.json(
+        { error: "Too many login attempts. Try again later." },
+        { status: 429 },
+      );
+    }
+
+    const isDb =
+      /P1001|P1017|Can't reach database|Timed out|ECONNREFUSED|ETIMEDOUT|connection/i.test(
+        message,
+      );
+
+    console.error("[admin/login]", message);
+
     return NextResponse.json(
       {
-        error:
-          status === 429
-            ? "Too many login attempts. Try again later."
-            : "Unable to sign in",
+        error: isDb
+          ? "Database is waking up or unreachable. Wait a few seconds and try again."
+          : "Unable to sign in",
       },
-      { status },
+      { status: 500 },
     );
   }
 }

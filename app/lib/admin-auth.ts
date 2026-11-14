@@ -81,8 +81,20 @@ export async function findAdminByEmail(email: string) {
   return rows[0] ?? null;
 }
 
+async function findAdminRoleUserByEmail(email: string) {
+  const rows = await prisma.$queryRaw<AdminRow[]>`
+    SELECT id, name, email, password AS "passwordHash"
+    FROM users
+    WHERE email = ${email} AND role = 'ADMIN'
+    LIMIT 1
+  `;
+  return rows[0] ?? null;
+}
+
 export async function authenticateAdmin(credentials: LoginCredentials) {
-  const admin = await findAdminByEmail(credentials.email);
+  const admin =
+    (await findAdminByEmail(credentials.email)) ??
+    (await findAdminRoleUserByEmail(credentials.email));
   if (!admin) {
     // Dummy compare to reduce timing oracle on missing users.
     await compare(
@@ -104,7 +116,7 @@ const loginAttempts = new Map<string, { count: number; resetAt: number }>();
 export function assertLoginRateLimit(ip: string) {
   const now = Date.now();
   const windowMs = 15 * 60 * 1000;
-  const maxAttempts = 10;
+  const maxAttempts = 25;
   const current = loginAttempts.get(ip);
 
   if (!current || current.resetAt < now) {
@@ -116,6 +128,11 @@ export function assertLoginRateLimit(ip: string) {
   if (current.count > maxAttempts) {
     throw new Error("Too many login attempts. Try again later.");
   }
+}
+
+/** Dev helper — wipe in-memory lockouts (e.g. after failed attempts). */
+export function resetAllLoginRateLimits() {
+  loginAttempts.clear();
 }
 
 export function clearLoginRateLimit(ip: string) {
